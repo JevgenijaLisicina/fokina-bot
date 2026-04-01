@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const TELEGRAM_TOKEN = '8170554625:AAGmFsvJ110VGPtHYOtYOwT0YLV4iMYEN2I';
+const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 
 let lastProcessedUpdateId = 0;
 

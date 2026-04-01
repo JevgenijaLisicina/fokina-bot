@@ -21,11 +21,11 @@ async function sendTelegramMessage(text) {
         const data = await response.json();
 
         if (!data.ok) {
-            console.log(`❌ Telegram API error: ${data.description}`);
+            console.log(`Telegram API error: ${data.description}`);
         }
 
     } catch (error) {
-        console.log(`❌ Network error: ${error.message}`);
+        console.log(`Network error: ${error.message}`);
     }
 }
 
@@ -34,9 +34,8 @@ test('check Fokina slots', async ({ page }) => {
     try {
         console.log("=== START CHECK ===");
 
-        // =========================
-        // 🔥 ПРОВЕРКА STATUS
-        // =========================
+        // проверка Status
+
 
         let botStatus = 'enabled';
 
@@ -45,11 +44,9 @@ test('check Fokina slots', async ({ page }) => {
         }
 
         if (botStatus.includes('disabled')) {
-            console.log('⛔ Bot is disabled');
+            console.log('Bot is disabled');
             return;
         }
-
-        // =========================
 
         await page.goto('https://stradini.lv/lv/pieteikuma-forma');
         console.log("Page opened");
@@ -94,7 +91,7 @@ test('check Fokina slots', async ({ page }) => {
             .catch(() => false);
 
         if (!isBlockVisible) {
-            console.log("❌ Блок не появился");
+            console.log("Блок не появился");
             return;
         }
 
@@ -105,14 +102,14 @@ test('check Fokina slots', async ({ page }) => {
             /\d{4}/.test(text);
 
         if (hasSlot) {
-            console.log('✅ Есть слот!');
-            await sendTelegramMessage('🔥 Появился слот к Фокиной!');
+            console.log('Есть слот!');
+            await sendTelegramMessage('Появился слот к Фокиной!');
         } else {
-            console.log('❌ Нет слотов');
+            console.log('Нет слотов');
         }
 
     } catch (error) {
-        console.log(`❌ TEST ERROR: ${error.message}`);
+        console.log(`TEST ERROR: ${error.message}`);
     }
 
 });

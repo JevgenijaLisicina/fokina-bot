@@ -6,7 +6,7 @@ const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 
 // Проверка токена при старте
 if (!TELEGRAM_TOKEN) {
-    console.log("❌ TELEGRAM_TOKEN is not defined in .env");
+    console.log("TELEGRAM_TOKEN is not defined in .env");
     process.exit(1);
 }
 
@@ -21,21 +21,21 @@ async function checkTelegramMessages() {
         const data = await response.json();
 
 
-        // ❌ если Telegram вернул ошибку
+        // если Telegram вернул ошибку
         if (!data.ok) {
-            console.log("❌ Telegram API error:", data);
+            console.log("Telegram API error:", data);
             return;
         }
 
         const updates = data.result;
 
-        // ❌ защита от "not iterable"
+        // защита от "not iterable"
         if (!Array.isArray(updates)) {
-            console.log("❌ updates is not array:", updates);
+            console.log("updates is not array:", updates);
             return;
         }
 
-        // 👉 если обновлений нет
+        // если обновлений нет
         if (updates.length === 0) {
             return;
         }
@@ -46,21 +46,21 @@ async function checkTelegramMessages() {
 
             const messageText = update.message?.text;
 
-            console.log("💬 Message:", messageText);
+            console.log("Message:", messageText);
 
             if (messageText === '/stop') {
                 fs.writeFileSync('status.txt', 'disabled');
-                console.log('⛔ Bot disabled via Telegram');
+                console.log('Bot disabled via Telegram');
             }
 
             if (messageText === '/start') {
                 fs.writeFileSync('status.txt', 'enabled');
-                console.log('✅ Bot enabled via Telegram');
+                console.log('Bot enabled via Telegram');
             }
         }
 
     } catch (error) {
-        console.log(`❌ Listener error: ${error.message}`);
+        console.log(`Listener error: ${error.message}`);
     }
 }
 

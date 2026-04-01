@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import fs from 'fs';
-require('dotenv').config();
+import 'dotenv/config';
 
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;

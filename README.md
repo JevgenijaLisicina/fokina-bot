@@ -85,7 +85,7 @@ Start Telegram listener:
 
     node telegram-listener.js
 
-Run Playwright check manually:
+Run Playwright check manually (for testing or debugging):
 
     npx playwright test
 

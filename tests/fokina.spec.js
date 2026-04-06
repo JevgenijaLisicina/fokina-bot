@@ -1,6 +1,8 @@
 import { test } from '@playwright/test';
 import fs from 'fs';
 import 'dotenv/config';
+import { config } from '../config.js';
+
 
 
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
@@ -68,8 +70,8 @@ test('check Fokina slots', async ({ page }) => {
         await specialistBtn.waitFor();
         await specialistBtn.click();
 
-        await frame.locator('#SpecialistParentSearchList').fill('fokina');
-        await frame.getByRole('option', { name: /Natālija Fokina/i }).click();
+        await frame.locator('#SpecialistParentSearchList').fill(config.doctorSearch);
+        await frame.getByRole('option', { name: new RegExp(config.doctorName, 'i') }).click();
 
         console.log("Selecting consultation...");
         const consultationBtn = frame.getByRole('button', { name: 'KLĀTIENES KONSULTĀCIJA' });

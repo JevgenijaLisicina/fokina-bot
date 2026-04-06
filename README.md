@@ -88,6 +88,8 @@ Start Telegram listener:
 Run Playwright check manually (for testing or debugging):
 
     npx playwright test
+    
+In normal usage, the check runs automatically every 5 minutes via cron.
 
 ## Deployment
 
